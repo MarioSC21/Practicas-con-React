@@ -1,25 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
+//Primer paso apra definir un compnente es el nombre
+//nombre del componente siempre debe iniciar en mayuscula
+//se puede usar function o arrow function
+
+const PrimerComponente = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Hola mundo</h1>
+      <div>
+        <h4>Hola</h4>
+      </div>
     </div>
   );
-}
+};
 
-export default App;
+//exportar
+export default PrimerComponente;

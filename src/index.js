@@ -4,12 +4,14 @@ import './index.css';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import reportWebVitals from './reportWebVitals';
 // import PrimerComponente from './App'
-import Home from "./pages/Home";
+// import Home from "./pages/Home"; //pokemon
+import App from "./App"
 
 ReactDOM.render(
   <React.StrictMode>
     {/* <PrimerComponente /> */}
-    <Home/>
+    {/* <Home/> */}
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );

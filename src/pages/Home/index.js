@@ -1,50 +1,85 @@
-import { useEffect, useState } from "react";
-import {Container, Card, CardContent, CardMedia, Grid}  from "@mui/material";
-// como ejectutar la funcion exportada
-import { getDataPokemon } from "../../service";
-import PokemonDetail from "../../components/PokemonDetail";
+import { Container, Grid } from "@mui/material";
+import Chart from "react-apexcharts";
 
-const Home = ()=>{
+const Home = () => {
+  const chartData = {
+    series: [
+      {
+        name: "Tech Development",
+        data: [10, 30, 20, 14, 66, 32, 16],
+      },
+    ],
+    options: {
+      xaxis: {
+        categories: ["JS", "CSS", "HTML", "Firebase", "NodeJS", "React", "Vue"],
+      },
+      fill: {
+        colors: ["#fffaaa"],
+      },
+      // grid: {
+      //   row: {
+      //     colors: ["#F44336", "#E91E63", "#9C27B0"],
+      //   },
+      //   column: {
+      //     colors: ["#F44336", "#E91E63", "#9C27B0"],
+      //   },
+      // },
+      chart: {
+        zoom: {
+          enabled: true,
+          type: "x",
+          autoScaleYaxis: false,
+          zoomedArea: {
+            fill: {
+              color: "#90CAF9",
+              opacity: 0.4,
+            },
+            stroke: {
+              color: "#0D47A1",
+              opacity: 0.4,
+              width: 1,
+            },
+          },
+        },
+      },
+    },
+  };
 
-    const imgUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/";
-
-    const [pokemons, setPokemon] = useState([]);
-    
-    const fetchPokemonList = async() =>{
-
-        const listPokemones =  await getDataPokemon();
-        setPokemon(listPokemones.results);
-    }
-    useEffect(()=> {
-        fetchPokemonList();
-        //! En los useEffect se debe colocar un array vacio para evitar un bucle infinito
-    },[]);
-    
-    return(
-        <Container>
-        <h1>Pokedex</h1>
-        <Grid container spacing={3}>
-          {pokemons.length > 0 &&
-            pokemons.map((pokemon, index) => (
-              // aca el codigo visual
-              <Grid item md={4} lg={4} sm={4} xs={6}>
-                <Card className="card-pokemon">
-                  <CardMedia
-                    component="img"
-                    className="img-pokemon"
-                    image={`${imgUrl}${index + 1}.svg`}
-                  />
-                  <CardContent className="center">
-                    <h3 className="name-pokemon">{pokemon.name}</h3>
-                    {/* Pasaremos el nombre como atributo */}
-                    <PokemonDetail nombre={pokemon.name} url={pokemon.url}/>
-                  </CardContent>
-                </Card>
-              </Grid>
-            ))}
-        </Grid>
-      </Container>
-    )
+  return (
+    <Container>
+      <Grid>
+        <h1>Home</h1>
+        <Chart
+          options={chartData.options}
+          series={chartData.series}
+          type="bar"
+          height={500}
+        />
+        <Chart
+          options={chartData.options}
+          series={chartData.series}
+          type="area"
+          height={500}
+        />
+        <Chart
+          options={{
+            labels: ["A", "B", "C", "D", "E"],
+            fill: {
+              colors: ["#addccc", "#f01", "#F44336", "#E91E63", "#ccaadd"],
+            },
+            dataLabels: {
+              style: {
+                colors: ["#addccc", "#f01", "#F44336", "#E91E63", "#ccaadd"],
+              },
+            },
+          }}
+          series={[44, 55, 41, 17, 15]}
+          type="donut"
+          width={500}
+        />
+      </Grid>
+    </Container>
+  );
 };
 
-export default Home
+export default Home;

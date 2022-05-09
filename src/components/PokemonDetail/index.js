@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import { getDataPokemon } from "../../service";
 
-const PokemonDetail = (props) => {
+const PokemonDetail = ({url,nombre}) => {
   const [abrir, setAbrir] = useState(false);
 
   const [pokemonData, setPokemonData] = useState({});
@@ -17,7 +17,7 @@ const PokemonDetail = (props) => {
   // como se lee un atributo que estamos recibiendo del componente
   // padre
   const fetchDetailFromPokemon = async () => {
-    const pokemon = await getDataPokemon(props.url);
+    const pokemon = await getDataPokemon(url);
     setPokemonData(pokemon);
   };
 
@@ -55,7 +55,7 @@ const PokemonDetail = (props) => {
           {/* Esto extrar los keys de un objeto */}
           {Object.keys(pokemonData).length > 0 && (
             <div>
-              <h2 className="name-pokemon">{props.nombre}</h2>
+              <h2 className="name-pokemon">{nombre}</h2>
               <Grid container>
                 <Grid item md={6}>
                   <h4>Habilidades</h4>
